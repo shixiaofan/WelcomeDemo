@@ -24,6 +24,17 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".Register"/>
+        <activity android:name=".page.Page1"/>
+        <activity android:name=".page.Page2"/>
+        <activity android:name=".page.Page3"/>
+        <activity android:name=".tab.SelectActivity">
+        </activity>
+        <activity android:name=".tab.Tab01">
+        </activity>
+        <activity android:name=".tab.Tab02">
+        </activity>
+        <activity android:name=".tab.Tab03">
+        </activity>
     </application>
 
 </manifest>

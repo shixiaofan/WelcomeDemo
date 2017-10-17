@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<TabHost android:id="@android:id/tabhost"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_page_color"
-    tools:context="com.example.administrator.welcomedemo.MainActivity">
 
-</android.support.constraint.ConstraintLayout>
+    tools:context="com.example.administrator.welcomedemo.MainActivity">
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+    <TabWidget
+        android:id="@android:id/tabs"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/login_page_color"
+        />
+
+
+</TabHost>
