@@ -31,6 +31,7 @@ public class PictureDatabase extends SQLiteOpenHelper {
     }
     //创建表并初始化表
     @Override
+
     public void onCreate (SQLiteDatabase db) {
 /*        String sql = "Create table " + TABLE_NAME + "(" + BaseColumns._ID
                 + " integer primary key autoincrement," + PictureColumns.PICTURE
