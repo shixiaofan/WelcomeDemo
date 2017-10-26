@@ -1,31 +1,45 @@
 package com.example.administrator.welcomedemo.database;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.provider.BaseColumns;
 import android.util.Log;
 
+import com.example.administrator.welcomedemo.R;
+
+import java.io.ByteArrayOutputStream;
 public class UserDataManager {             //用户数据管理类
     private static final String TAG = "UserDataManager";
     private static final String DB_NAME = "user_data";
     private static final String TABLE_NAME = "users";
     public static final String ID = "_id";
+    private static final String INFO_NAME="info_name";
     public static final String USER_NAME = "user_name";
     public static final String USER_PWD = "user_pwd";
     private static final int DB_VERSION = 2;
-    private Context mContext = null;
+    private Context mContext=null ;
+    public static class PictureColumns implements BaseColumns {
+        public static final String INFO_IMAGE = "info_image";
+    }
 
     //创建用户book表
     private static final String DB_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
             + ID + " integer primary key," + USER_NAME + " varchar,"
-            + USER_PWD + " varchar" + ");";
+            + USER_PWD + " varchar," + INFO_NAME+ " varchar,"+PictureColumns.INFO_IMAGE+"BLOB);";
     private SQLiteDatabase mSQLiteDatabase = null;
     private DataBaseManagementHelper mDatabaseHelper = null;
     //DataBaseManagementHelper继承自SQLiteOpenHelper
-    private static class DataBaseManagementHelper extends SQLiteOpenHelper {
 
+    private static class DataBaseManagementHelper extends SQLiteOpenHelper {
+    private Context mContect;
         DataBaseManagementHelper(Context context) {
             super(context, DB_NAME, null, DB_VERSION);
         }
@@ -37,6 +51,28 @@ public class UserDataManager {             //用户数据管理类
             db.execSQL(DB_CREATE);
             Log.i(TAG, "db.execSQL(DB_CREATE)");
             Log.e(TAG, DB_CREATE);
+            initDataBase(db,mContect);
+        }
+        //将转换后的图片存入到数据库中
+        private void initDataBase (SQLiteDatabase db, Context context) {
+            Drawable drawable = context.getResources().getDrawable(R.drawable.one);
+            User user=new User(INFO_NAME);
+            String info_name=user.getInfo_Name();
+            ContentValues cv = new ContentValues();
+            cv.put(PictureColumns.INFO_IMAGE, getPicture(drawable));
+            cv.put(INFO_NAME,info_name);
+            db.insert(TABLE_NAME, null, cv);
+        }
+        //将drawable转换成可以用来存储的byte[]类型
+        private byte[] getPicture(Drawable drawable) {
+            if(drawable == null) {
+                return null;
+            }
+            BitmapDrawable bd = (BitmapDrawable) drawable;
+            Bitmap bitmap = bd.getBitmap();
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            bitmap.compress(CompressFormat.PNG, 100, os);
+            return os.toByteArray();
         }
 
         @Override
@@ -131,6 +167,27 @@ public class UserDataManager {             //用户数据管理类
         }
         return result;
     }
+
+   /* public ArrayList<Drawable> getDrawables() {
+
+        ArrayList<Drawable> drawables = new ArrayList<Drawable>();
+        //查询数据库
+        Cursor c = mSQLiteDatabase.query(TABLE_NAME, null, null, null, null, null, null);
+        //遍历数据
+        if(c != null) {
+
+                //获取数据
+                byte[] b = c.getBlob(c.getColumnIndexOrThrow(UserDataManager.PictureColumns.INFO_IMAGE));
+                //将获取的数据转换成drawable
+                Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length, null);
+                BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+                Drawable drawable = bitmapDrawable;
+                drawables.add(drawable);
+            }
+
+        return drawables;
+    }
+*/
     //根据用户名和密码找用户，用于登录
     public int findUserByNameAndPwd(String userName, String pwd){
         Log.i(TAG,"findUserByNameAndPwd");

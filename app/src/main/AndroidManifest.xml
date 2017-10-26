@@ -24,7 +24,7 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".Register"/>
-        <activity android:name=".page.Page1"/>
+        <activity android:name=".Boss"/>
         <activity android:name=".page.Page2"/>
         <activity android:name=".page.Page3"/>
         <activity android:name=".tab.SelectActivity">
@@ -34,6 +34,14 @@
         <activity android:name=".tab.Tab02">
         </activity>
         <activity android:name=".tab.Tab03">
+        </activity>
+        <activity android:name=".My_information">
+        </activity>
+        <activity android:name=".BossZoomHelper">
+        </activity>
+        <activity android:name=".database.Information">
+        </activity>
+        <activity android:name=".database.PictureDatabase">
         </activity>
     </application>
 

@@ -10,7 +10,6 @@ import android.os.Handler;
         * 与选择是否显示导航动画
         */
 public  class Welcome extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

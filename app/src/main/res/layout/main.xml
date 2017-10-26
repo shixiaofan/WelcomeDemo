@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost android:id="@android:id/tabhost"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     tools:context="com.example.administrator.welcomedemo.MainActivity">
+    <RelativeLayout
+        android:background="@color/login_page_color"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <com.example.administrator.welcomedemo.myview.CircleImageView
+            android:id="@+id/head_image_button"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/one"/>
+        <TextView
+            android:id="@+id/head_text"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="qqq"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+<TabHost android:id="@android:id/tabhost"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+        >
+
     <FrameLayout
         android:id="@android:id/tabcontent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
     </FrameLayout>
     <TabWidget
         android:id="@android:id/tabs"
@@ -23,3 +48,4 @@
 
 
 </TabHost>
+</LinearLayout>
