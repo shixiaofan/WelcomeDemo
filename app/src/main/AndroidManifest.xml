@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.administrator.welcomedemo">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,11 +26,6 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".Register"/>
-        <activity android:name=".Boss"/>
-        <activity android:name=".page.Page2"/>
-        <activity android:name=".page.Page3"/>
-        <activity android:name=".tab.SelectActivity">
-        </activity>
         <activity android:name=".tab.Tab01">
         </activity>
         <activity android:name=".tab.Tab02">
@@ -37,11 +34,9 @@
         </activity>
         <activity android:name=".My_information">
         </activity>
-        <activity android:name=".BossZoomHelper">
+        <activity android:name=".friend_list_item.ExpandableList_friend_item">
         </activity>
-        <activity android:name=".database.Information">
-        </activity>
-        <activity android:name=".database.PictureDatabase">
+        <activity android:name=".friend_list_item.ExpendAdapter">
         </activity>
     </application>
 
